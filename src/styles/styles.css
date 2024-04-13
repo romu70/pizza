@@ -107,6 +107,23 @@ p {
   height: 2rem;
 }
 
+.ingredient {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 0;
+}
+
+#yeast {
+  margin-top: 0.5rem;
+}
+
+.ingredient#yeast-fresh, .ingredient#yeast-dry {
+  padding: 0;
+}
+
 @media (min-width: 512px) {
   form {
     width: 85%;
