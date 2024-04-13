@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+import InputNum from "../components/InputNum.astro";
+import Modale from "../components/Modale.astro";
+import Pizza from "../components/Pizza.astro";
+import Overlay from "../components/Overlay.astro";
+---
+
+<Layout title="Pizza">
+  <main>
+    <div id="header">
+      <Pizza />
+      <h1>Pizza</h1>
+      <Pizza />
+    </div>
+    <p>La pizza est une science, on ne rigole pas avec la science.</p>
+    <form id="pizza">
+      <!-- <h2>Saisie des paramètres</h2> -->
+      <InputNum
+        label="Poids des pâtons en g"
+        id="weight"
+        min="250"
+        max="600"
+        step="10"
+      />
+      <InputNum
+        label="Nombre de pizzas"
+        id="quantity"
+        min="1"
+        max="20"
+        step="1"
+      />
+      <InputNum label="Eau en %" id="water" min="50" max="80" step="0.5" />
+      <InputNum
+        label="Huile d'olive en %"
+        id="oil"
+        min="0"
+        max="5"
+        step="0.5"
+      />
+      <InputNum
+        label="Sel en %"
+        id="salt"
+        min="0"
+        max="5"
+        step="0.5"
+        type="range"
+      />
+      <InputNum
+        label="Taux de levure en g/kg de farine"
+        id="yeast"
+        min="2"
+        max="5"
+        step="0.5"
+      />
+      <p class="caption">
+        Taux en levure fraîche, résultat donné en levure fraîche et sèche.
+      </p>
+      <!-- <div id="yeast-type" data-id="yeast-type">
+        <label>Type de levure boulangère</label>
+        <select name="yeast-type" data-id="yeast-type">
+          <option id="select-placeholder" value="">-- Sélectionner --</option>
+          <option class="select-value" value="fresh">Fraîche</option>
+          <option class="select-value" value="dry">Sèche</option>
+        </select>
+      </div> -->
+
+      <button id="compute" type="submit" value="Calculer">Calculer</button>
+    </form>
+
+    <Modale />
+    <Overlay />
+  </main>
+</Layout>
+
+<script>
+  type Div = HTMLElement | null | undefined;
+
+  // onSubmit sur le form pour récupérer toutes les valeurs en une passe
+  // voir aussi form data
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let form = document.getElementById("pizza");
+    form?.addEventListener("submit", onCompute);
+    const overlay = document.getElementById("overlay");
+      if(overlay) {
+        overlay.style.visibility = "hidden";
+      }
+  });
+
+  function onCompute(e: Event) {
+    // data computing is made in the modale submit callback.
+
+    e?.preventDefault();
+    const dialog = document.querySelector("dialog");
+    if (dialog) {
+      dialog.style.visibility = "visible";
+      dialog.showModal();
+      const overlay = document.getElementById("overlay");
+      if(overlay) {
+        overlay.style.visibility = "visible";
+      }
+    }
+  }
+</script>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: calc(100% - 2rem);
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+    padding-bottom: 2rem;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  #header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    color: var(--italian-green);
+    text-shadow: 2px 2px 4px var(--italian-red);
+  }
+
+  h2 {
+    text-align: center;
+    color: #999;
+  }
+
+  .caption {
+    margin-top: -1rem;
+  }
+
+</style>

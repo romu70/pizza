@@ -1,0 +1,138 @@
+---
+// import { Debug } from "astro:components";
+const { label, id, min, max, step } = Astro.props;
+---
+
+<div class="input-num" data-id={id}>
+  <label>{label}</label>
+  <div class="controls" data-id={id}>
+    <button class="less" type="button" name="-" value="-" data-id={id}>-</button
+    >
+    <input
+      name={id}
+      type="number"
+      min={min}
+      max={max}
+      data-id={id}
+      step={step}
+      value={min}
+    />
+    <button class="more" type="button" name="+" value="+" data-id={id}>+</button
+    >
+  </div>
+</div>
+
+<script>
+  // TODO: add min max
+
+  type Divs = NodeListOf<HTMLElement> | null | undefined;
+  type Inputs = NodeListOf<HTMLInputElement> | null | undefined;
+  type Div = HTMLElement | null | undefined;
+  let value: number = 0;
+  let inputsNum: Divs = null;
+  let input: HTMLInputElement | null = null;
+  let inputs: Inputs = null;
+  // let grid: Element | null = null;
+  // let details: Divs = null;
+  // let currentShownDetail: Div = null;
+  // let detailPaneHeight: number = 0;
+  // let currentThumbnailHeight: number = 0;
+  // let rem: number = 0;
+  // let mobileViewBreakpoint: number =  0;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    inputsNum = document.querySelectorAll(".input-num .controls button");
+    addButtonsClick();
+
+    // init inputs value with min
+    inputs = document.querySelectorAll(".input-num .controls input");
+    inputs?.forEach((input) => {
+      if (input.dataset.min) {
+        input.value = input.dataset.min;
+      }
+    });
+
+    // details = grid?.querySelectorAll('.detail');
+    // hideAllDetails();
+    // addThumbnailImageClick();
+    // addKeyboardManagement();
+    // addDetailClick('.close-button', onDetailCloseClick);
+    // addDetailClick('.next-button', onDetailNextClick);
+    // addDetailClick('.previous-button', onDetailPreviousClick);
+    // detailPaneHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--detail-pane-height'));
+    // rem = parseInt(getComputedStyle(document.documentElement).fontSize);
+    // mobileViewBreakpoint =  parseInt(getComputedStyle(document.documentElement).getPropertyValue('--mobile-view-breakpoint'));
+  });
+
+  function increment() {
+    value = Math.min(value + 1, 99);
+    // console.log("increment - new value: " + value);
+    // dispatchEvent(new CustomEvent("change", { detail: value }));
+  }
+
+  function decrement() {
+    value = Math.max(value - 1, 0);
+    // console.log("decrement - new value: " + value);
+    // dispatchEvent(new CustomEvent("change", { detail: value }));
+  }
+
+  function addButtonsClick() {
+    inputsNum?.forEach((button) => {
+      button.addEventListener("click", onButtonClick);
+    });
+  }
+
+  function onButtonClick(this: HTMLButtonElement, e: Event) {
+    // console.log("click on:");
+    // console.log(this);
+    // console.log(this.name);
+
+    // Get the id to get the proper input
+    let id: string = this.dataset.id ? this.dataset.id : "undefined";
+    // console.log("id: " + id);
+
+    let input: HTMLInputElement | null = document.querySelector(
+      `.input-num .controls input[data-id="${id}"]`,
+    );
+    // console.log(input);
+    // Get min and max values
+    let min: number = Number(input?.min);
+    let max: number = Number(input?.max);
+    let step: number = Number(input?.step);
+    // console.log("step: " + step);
+    let value: number = Number(input?.value);
+
+    if (this.name === "+") {
+      value = Math.min(value + step, max);
+    } else {
+      value = Math.max(value - step, min);
+    }
+
+    if (input) {
+      input.value = value.toString();
+    }
+  }
+</script>
+
+<style>
+  .less,
+  .more {
+    padding: 0.8rem 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .less {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border: none;
+    background-color: var(--italian-green);
+    color: white;
+  }
+
+  .more {
+    border-radius: 0 0.5rem 0.5rem 0;
+    border: none;
+    background-color: var(--italian-red);
+    color: white;
+  }
+</style>
