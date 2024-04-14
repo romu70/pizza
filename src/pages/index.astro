@@ -46,25 +46,27 @@ import Overlay from "../components/Overlay.astro";
         step="0.5"
         type="range"
       />
+      <fieldset id="yeast-type" data-id="yeast-type">
+        <label>Type de levure boulangère</label>
+        <div class="radio">
+          <input type="radio" id="yeast-fresh" name="yeast-type" value="Fraîche" />
+          <label for="yeast-fresh">Fraîche</label>
+        </div>
+        <div class="radio">
+          <input type="radio" id="yeast-dry" name="yeast-type" value="Sèche" />
+          <label for="yeast-dry">Sèche</label>
+          </div>
+      </fieldset>
       <InputNum
         label="Taux de levure en g/kg de farine"
         id="yeast"
-        min="2"
+        min="0"
         max="5"
-        step="0.5"
+        step="0.1"
       />
-      <p class="caption">
+      <!-- <p class="caption">
         Taux en levure fraîche, résultat donné en levure fraîche et sèche.
-      </p>
-      <!-- <div id="yeast-type" data-id="yeast-type">
-        <label>Type de levure boulangère</label>
-        <select name="yeast-type" data-id="yeast-type">
-          <option id="select-placeholder" value="">-- Sélectionner --</option>
-          <option class="select-value" value="fresh">Fraîche</option>
-          <option class="select-value" value="dry">Sèche</option>
-        </select>
-      </div> -->
-
+      </p> -->
       <button id="compute" type="submit" value="Calculer">Calculer</button>
     </form>
 
@@ -142,6 +144,32 @@ import Overlay from "../components/Overlay.astro";
 
   .caption {
     margin-top: -1rem;
+  }
+
+  fieldset {
+    border: none;
+    width: 100%;
+  }
+
+  fieldset > label {
+    color: var(--main-color);
+    font-weight: 500;
+  }
+
+  .radio {
+    padding: 0.25rem 0;
+    display: flex;
+    gap:0.5rem;
+    align-items: center;
+  }
+
+  .radio label {
+    color: black;
+  }
+
+  input[type=radio] {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
 </style>

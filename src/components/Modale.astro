@@ -16,17 +16,11 @@ import blankSvg from '../images/blank.svg';
   <p>Les poids sont indiqués en g.</p>
   <Ingredient id="flour" type="Farine" value="" symbol={flourSvg} />
   <Ingredient id="water" type="Eau" value="" symbol={waterSvg}/>
-  <Ingredient id="oil" type="Huile" value="" symbol={oliveSvg}/>
+  <Ingredient id="oil" type="Huile d'olive" value="" symbol={oliveSvg}/>
   <Ingredient id="salt" type="Sel" value="" symbol={saltSvg}/>
-  <Ingredient id="weight" type="Poids total" value=""  symbol={weightSvg}/>
-  <div id="yeast">
-    <div class="left">
-      <Image src={yeastSvg} alt="" />
-      <span class="type">Levure (au choix selon le type)</span>
-    </div>
-  </div>
-  <Ingredient id="yeast-fresh" type="Fraîche" value="" symbol={blankSvg}/>
-  <Ingredient id="yeast-dry" type="Sèche" value="" symbol={blankSvg}/>
+  <Ingredient id="weight" type="Poids total" value="" symbol={weightSvg}/>
+  <Ingredient id="yeast" type="Levure " value="" symbol={yeastSvg}/>
+  <span id="yeast-caption">test</span>
   <button>Fermer</button>
 </dialog>
 
@@ -63,51 +57,63 @@ import blankSvg from '../images/blank.svg';
   function onCompute(e: Event) {
     // showing the dialog is made in the index submit callback
 
-    let form: HTMLFormElement = e.target as HTMLFormElement;
-    console.log(form);
+    let unitWeight = Number(getInputValue("weight"));
+    let quantity = Number(getInputValue("quantity"));
+    let waterRate = Number(getInputValue("water")) / 100;
+    let oilRate = Number(getInputValue("oil")) / 100;
+    let saltRate = Number(getInputValue("salt")) / 100;
 
-    if (form && form.length > 18) {
-      let unitWeight = Number(getInputValue(form[1]));
-      let quantity = Number(getInputValue(form[4]));
-      let waterRate = Number(getInputValue(form[7])) / 100;
-      let oilRate = Number(getInputValue(form[10])) / 100;
-      let saltRate = Number(getInputValue(form[13])) / 100;
-      let yeastRate = Number(getInputValue(form[16]));
-
-      let weight = unitWeight * quantity;
-      let rate = 1 + waterRate + oilRate + saltRate;
-      let flour = Math.round(weight / rate);
-      let water = Math.round(flour * waterRate);
-      let oil = Math.round(flour * oilRate);
-      let salt = Math.round(flour * saltRate);
-      let yeast = (yeastRate * flour) / 1000;
-
-      // console.log(weight);
-      // console.log(rate);
-      // console.log(flour);
-      // console.log(water);
-      // console.log(oil);
-      // console.log(salt);
-      // console.log(yeast);
-
-      // If dry yeast, we have to divide by 2.5
-      // if (yeastType === 2) {
-      //   yeast = yeast / 2.5;
-      // }
-
-      setValue("flour", flour.toString());
-      setValue("water", water.toString());
-      setValue("oil", oil.toString());
-      setValue("salt", salt.toString());
-      setValue("yeast-fresh", yeast.toFixed(1));
-      setValue("yeast-dry", (yeast/2.5).toFixed(1));
-      setValue("weight", weight.toString());
+    let yeastTypeInput: HTMLInputElement | null = document.querySelector('input[name="yeast-type"]:checked');
+    let yeastType;
+    if(yeastTypeInput) {
+      yeastType = yeastTypeInput.value;
     }
+    let yeastRate = Number(getInputValue("yeast"));
+
+    let weight = unitWeight * quantity;
+    let rate = 1 + waterRate + oilRate + saltRate;
+    let flour = Math.round(weight / rate);
+    let water = Math.round(flour * waterRate);
+    let oil = Math.round(flour * oilRate);
+    let salt = Math.round(flour * saltRate);
+    let yeast = (yeastRate * flour) / 1000;
+
+    setValue("flour", flour.toString());
+    setValue("water", water.toString());
+    setValue("oil", oil.toString());
+    setValue("salt", salt.toString());
+    setValue("weight", weight.toString());
+    setValue("yeast", yeast.toFixed(1));
+
+    // Set the yeast label to specify the type
+    let yeastField = document.querySelector("#yeast .left span");
+    if(yeastField && yeastField.textContent) {
+      yeastField.textContent = "Levure " + yeastType;
+    }
+
+    removeBorder("yeast");
+
+    let yeastCaption = document.getElementById("yeast-caption");
+    let yeastEquivalent: string;
+    let yeastWeight: number = 0;
+    if(yeastCaption) {
+      if(yeastType === "Fraîche") {
+        yeastWeight = yeast / 2.5;
+        yeastEquivalent = "Equivaut à " + yeastWeight.toFixed(1) + " g de levure sèche, soit " + (yeastWeight * 1000 / flour).toFixed(1) + " g/kg de farine.";
+      } else { // Sèche
+        yeastWeight = yeast * 2.5;
+        yeastEquivalent = "Equivaut à " + yeastWeight.toFixed(1) + " g de levure fraîche, soit " + (yeastWeight * 1000 / flour).toFixed(1) + " g/kg de farine.";
+      }
+
+      yeastCaption.textContent = yeastEquivalent;
+    }
+
+
   }
 
-  function getInputValue(element: Element) {
-    let input: HTMLInputElement = element as HTMLInputElement;
-    return input.value;
+  function getInputValue(name: string) {
+    let input: HTMLInputElement | null = document.querySelector(`input[name="${name}"]`);
+    return input ? input.value : null;
   }
 
   function setValue(key: string, value: string) {
@@ -136,7 +142,7 @@ import blankSvg from '../images/blank.svg';
     width: 30rem;
   }
 
-  p {
+  p, #yeast-caption{
     width: 100%;
     text-align: left;
   }
@@ -154,13 +160,9 @@ import blankSvg from '../images/blank.svg';
     color: #0000a5;
     border-color: #0000a5;
     background-color: azure;
-}
-
-  dialog #yeast {
-    margin-top: 0.5rem;
   }
 
-  dialog .ingredient#yeast-fresh, dialog .ingredient#yeast-dry {
-    padding: 0.25rem 0;
+  #yeast-caption {
+    margin-top: -0.75rem;
   }
 </style>
