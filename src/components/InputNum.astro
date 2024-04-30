@@ -16,6 +16,7 @@ const { label, id, min, max, step } = Astro.props;
       data-id={id}
       step={step}
       value={min}
+      inputmode="numeric"
     />
     <button class="more" type="button" name="+" value="+" data-id={id}>+</button
     >
@@ -85,7 +86,7 @@ const { label, id, min, max, step } = Astro.props;
     if (input) {
       // input.value = value.toString();
       // Round decimal values
-      if(step < 1) {
+      if (step < 1) {
         input.value = value.toFixed(1);
       } else {
         input.value = value.toString();
