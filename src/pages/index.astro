@@ -49,13 +49,19 @@ import Overlay from "../components/Overlay.astro";
       <fieldset id="yeast-type" data-id="yeast-type">
         <label>Type de levure boulangère</label>
         <div class="radio">
-          <input type="radio" id="yeast-fresh" name="yeast-type" value="Fraîche" />
+          <input
+            type="radio"
+            id="yeast-fresh"
+            name="yeast-type"
+            value="Fraîche"
+            checked
+          />
           <label for="yeast-fresh">Fraîche</label>
         </div>
         <div class="radio">
           <input type="radio" id="yeast-dry" name="yeast-type" value="Sèche" />
           <label for="yeast-dry">Sèche</label>
-          </div>
+        </div>
       </fieldset>
       <InputNum
         label="Taux de levure en g/kg de farine"
@@ -64,9 +70,9 @@ import Overlay from "../components/Overlay.astro";
         max="5"
         step="0.1"
       />
-      <!-- <p class="caption">
-        Taux en levure fraîche, résultat donné en levure fraîche et sèche.
-      </p> -->
+      <span id="yeast-caption">
+        équivalence levure
+      </span>
       <button id="compute" type="submit" value="Calculer">Calculer</button>
     </form>
 
@@ -77,30 +83,83 @@ import Overlay from "../components/Overlay.astro";
 
 <script>
   type Div = HTMLElement | null | undefined;
+  let overlay: Div;
 
   // onSubmit sur le form pour récupérer toutes les valeurs en une passe
   // voir aussi form data
 
   document.addEventListener("DOMContentLoaded", function () {
-    let form = document.getElementById("pizza");
-    form?.addEventListener("submit", onCompute);
-    const overlay = document.getElementById("overlay");
-      if(overlay) {
-        overlay.style.visibility = "hidden";
-      }
+    let element = document.getElementById("pizza");
+    element?.addEventListener("submit", onCompute);
+
+    // Listen to each change in the yeast domain
+    element = document.getElementById("yeast-fresh");
+    element?.addEventListener("input", onYeastChange);
+
+    element = document.getElementById("yeast-dry");
+    element?.addEventListener("input", onYeastChange);
+
+    element = document.querySelector('input[name="yeast"]');
+    element?.addEventListener("input", onYeastChange);
+
+    element = document.querySelector('button.less[data-id="yeast"]');
+    console.log(element);
+    element?.addEventListener("click", onYeastChange);
+
+    element = document.querySelector('button.more[data-id="yeast"]');
+    console.log(element);
+    element?.addEventListener("click", onYeastChange);
+    
+    // Ensure the yeast equivalence is computed at startup
+    element?.click();
+
+    // Hide the overlay
+    overlay = document.getElementById("overlay");
+    if (overlay) {
+      overlay.style.visibility = "hidden";
+    }
   });
 
   function onCompute(e: Event) {
     // data computing is made in the modale submit callback.
+    console.log("onComputer");
 
     e?.preventDefault();
     const dialog = document.querySelector("dialog");
     if (dialog) {
       dialog.style.visibility = "visible";
       dialog.showModal();
-      const overlay = document.getElementById("overlay");
-      if(overlay) {
+      if (overlay) {
         overlay.style.visibility = "visible";
+      }
+    }
+  }
+
+  function onYeastChange(e: Event) {
+    // Get the yeast value
+    let yeastInput: HTMLInputElement | null = document.querySelector(`input[name="yeast"]`);
+    let yeast: number = yeastInput ? Number.parseFloat(yeastInput.value) : 0;
+    // Get the yeast type
+    let selectedYeast = document.querySelectorAll('input[name="yeast-type"]:checked');
+    // let selectedYeast = document.querySelectorAll('input[name="yeast-type"]:checked')[0].id;
+    if(selectedYeast) {
+      let yeastEquivalent: string = "";
+      let yeastEquivalentWeight: number = 0;
+      if(selectedYeast[0].id === "yeast-fresh") {
+        yeastEquivalent = "sèche";
+        yeastEquivalentWeight = yeast / 2.5;
+      } else if (selectedYeast[0].id === "yeast-dry") {
+        yeastEquivalent = "fraîche";
+        yeastEquivalentWeight = yeast * 2.5;
+      }
+      else {
+        alert("erreur sur le type de levure");
+      }
+
+      let captionText: string = "Equivaut à " + yeastEquivalentWeight.toFixed(1) + " g de levure " + yeastEquivalent + " par kg de farine.";
+      let caption: HTMLElement | null = document.getElementById("yeast-caption");
+      if(caption) {
+        caption.textContent = captionText;
       }
     }
   }
@@ -142,10 +201,6 @@ import Overlay from "../components/Overlay.astro";
     color: #999;
   }
 
-  .caption {
-    margin-top: -1rem;
-  }
-
   fieldset {
     border: none;
     width: 100%;
@@ -159,7 +214,7 @@ import Overlay from "../components/Overlay.astro";
   .radio {
     padding: 0.25rem 0;
     display: flex;
-    gap:0.5rem;
+    gap: 0.5rem;
     align-items: center;
   }
 
@@ -167,9 +222,13 @@ import Overlay from "../components/Overlay.astro";
     color: black;
   }
 
-  input[type=radio] {
+  input[type="radio"] {
     width: 1.5rem;
     height: 1.5rem;
   }
 
+  #yeast-caption {
+    /* visibility: hidden; */
+    margin-top: -0.5rem;
+  }
 </style>
