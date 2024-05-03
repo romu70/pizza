@@ -20,7 +20,7 @@ import blankSvg from '../images/blank.svg';
   <Ingredient id="salt" type="Sel" value="" symbol={saltSvg}/>
   <Ingredient id="weight" type="Poids total" value="" symbol={weightSvg}/>
   <Ingredient id="yeast" type="Levure " value="" symbol={yeastSvg}/>
-  <span id="yeast-caption">test</span>
+  <span id="final-yeast-caption">test</span>
   <button>Fermer</button>
 </dialog>
 
@@ -93,7 +93,7 @@ import blankSvg from '../images/blank.svg';
 
     removeBorder("yeast");
 
-    let yeastCaption = document.getElementById("yeast-caption");
+    let yeastCaption = document.getElementById("final-yeast-caption");
     let yeastEquivalent: string;
     let yeastWeight: number = 0;
     if(yeastCaption) {
@@ -107,8 +107,6 @@ import blankSvg from '../images/blank.svg';
 
       yeastCaption.textContent = yeastEquivalent;
     }
-
-
   }
 
   function getInputValue(name: string) {
@@ -142,7 +140,7 @@ import blankSvg from '../images/blank.svg';
     width: 30rem;
   }
 
-  p, #yeast-caption{
+  p, #final-yeast-caption{
     width: 100%;
     text-align: left;
   }
@@ -162,7 +160,7 @@ import blankSvg from '../images/blank.svg';
     background-color: azure;
   }
 
-  #yeast-caption {
+  #final-yeast-caption {
     margin-top: -0.75rem;
   }
 </style>

@@ -3,6 +3,7 @@
   --italian-green: #40914d;
   --italian-red: #be393b;
   --main-color: #777;
+  background-color: white;
 }
 
 * {
@@ -12,10 +13,8 @@
 }
 
 body {
-  background-color: white;
   line-height: var(--line-height);
   padding-top: 2rem;
-  height: 100dvh;
 }
 
 form {
@@ -39,7 +38,8 @@ form {
   width: 100%;
 }
 
-.input-num label, #yeast-type label {
+.input-num label,
+#yeast-type label {
   font-size: 1.2rem;
   text-align: center;
 }
@@ -56,7 +56,7 @@ button {
   border-bottom: 1px solid #aaa;
 }
 
-input[type=number] {
+input[type="number"] {
   width: 100%;
 }
 
@@ -79,7 +79,8 @@ input[type=number] {
   background-color: #0000a5;
 }
 
-p, #yeast-caption {
+p,
+#yeast-caption, #final-yeast-caption {
   color: #777;
   text-align: center;
   font-style: italic;
