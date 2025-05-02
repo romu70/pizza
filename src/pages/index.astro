@@ -109,7 +109,7 @@ import Overlay from "../components/Overlay.astro";
     element = document.querySelector('button.more[data-id="yeast"]');
     console.log(element);
     element?.addEventListener("click", onYeastChange);
-    
+
     // Ensure the yeast equivalence is computed at startup
     element?.click();
 
@@ -230,5 +230,10 @@ import Overlay from "../components/Overlay.astro";
   #yeast-caption {
     /* visibility: hidden; */
     margin-top: -0.5rem;
+  }
+
+  #compute {
+    background-color: #F5E90C;
+    color: black;
   }
 </style>
