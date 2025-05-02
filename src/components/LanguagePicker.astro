@@ -1,0 +1,11 @@
+---
+import { languages } from '../i18n/ui';
+const base = import.meta.env.BASE_URL;
+---
+<ul>
+  {Object.entries(languages).map(([lang, label]) => (
+    <li>
+      <a href={`${base}/${lang}/`}>{label}</a>
+    </li>
+  ))}
+</ul>
