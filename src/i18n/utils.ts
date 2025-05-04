@@ -1,7 +1,11 @@
 import { ui, defaultLang } from "./ui";
 
 export function getLangFromUrl(url: URL) {
-  const [, lang] = url.pathname.split("/");
+  // console.log("url: ", url);
+  // It'll need some rework when the site gets published with the final domain name.
+  // TODO
+  const [, , lang] = url.pathname.split("/");
+  // console.log("lang: ", lang);
   if (lang in ui) return lang as keyof typeof ui;
   return defaultLang;
 }
