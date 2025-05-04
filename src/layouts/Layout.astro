@@ -2,19 +2,20 @@
 import { getLangFromUrl } from '../i18n/utils';
 import LanguagePicker from '../components/LanguagePicker.astro';
 import "../styles/styles.css";
+
+import DoughForm from "../components/DoughForm.astro";
+import Modale from "../components/Modale.astro";
+import Pizza from "../components/Pizza.astro";
+import Overlay from "../components/Overlay.astro";
+
 const favi = import.meta.env.BASE_URL + "/favicon.svg";
 
 const lang = getLangFromUrl(Astro.url);
-
-interface Props {
-	title: string;
-}
-
-const { title } = Astro.props;
+const title = "Coach Pizza";
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={title}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Calculateur de pâte à pizza" />
@@ -23,41 +24,100 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<!-- TODO : to be reworked -->
 		<!-- <meta http-equiv="refresh" content="0;url=/pizza/fr-FR/" /> -->
-<title>{title}</title>
+		<title>{title}</title>
 	</head>
 	<body>
 		<LanguagePicker />
+    <main>
+      <DoughForm />
+      <!-- <Modale />
+      <Overlay /> -->
+    </main>
+
 		<slot />
 	</body>
 </html>
 
+<script>
+  type Div = HTMLElement | null | undefined;
+  let overlay: Div;
 
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
+  // onSubmit sur le form pour récupérer toutes les valeurs en une passe
+  // voir aussi form data
+
+  document.addEventListener("DOMContentLoaded", function () {
+    let element = document.getElementById("pizza");
+    element?.addEventListener("submit", onCompute);
+
+    // Listen to each change in the yeast domain
+    element = document.getElementById("yeast-fresh");
+    element?.addEventListener("input", onYeastChange);
+
+    element = document.getElementById("yeast-dry");
+    element?.addEventListener("input", onYeastChange);
+
+    element = document.querySelector('input[name="yeast"]');
+    element?.addEventListener("input", onYeastChange);
+
+    element = document.querySelector('button.less[data-id="yeast"]');
+    //console.log(element);
+    element?.addEventListener("click", onYeastChange);
+
+    element = document.querySelector('button.more[data-id="yeast"]');
+    //console.log(element);
+    element?.addEventListener("click", onYeastChange);
+
+    // Ensure the yeast equivalence is computed at startup
+    element?.click();
+
+    // Hide the overlay
+    overlay = document.getElementById("overlay");
+    if (overlay) {
+      overlay.style.visibility = "hidden";
+    }
+  });
+
+  function onCompute(e: Event) {
+    // data computing is made in the modale submit callback.
+    console.log("onCompute");
+
+    e?.preventDefault();
+    const dialog = document.querySelector("dialog");
+    if (dialog) {
+      dialog.style.visibility = "visible";
+      dialog.showModal();
+      if (overlay) {
+        overlay.style.visibility = "visible";
+      }
+    }
+  }
+
+  function onYeastChange(e: Event) {
+    // Get the yeast value
+    let yeastInput: HTMLInputElement | null = document.querySelector(`input[name="yeast"]`);
+    let yeast: number = yeastInput ? Number.parseFloat(yeastInput.value) : 0;
+    // Get the yeast type
+    let selectedYeast = document.querySelectorAll('input[name="yeast-type"]:checked');
+    // let selectedYeast = document.querySelectorAll('input[name="yeast-type"]:checked')[0].id;
+    if(selectedYeast) {
+      let yeastEquivalent: string = "";
+      let yeastEquivalentWeight: number = 0;
+      if(selectedYeast[0].id === "yeast-fresh") {
+        yeastEquivalent = "sèche";
+        yeastEquivalentWeight = yeast / 2.5;
+      } else if (selectedYeast[0].id === "yeast-dry") {
+        yeastEquivalent = "fraîche";
+        yeastEquivalentWeight = yeast * 2.5;
+      }
+      else {
+        alert("erreur sur le type de levure");
+      }
+
+      let captionText: string = "Equivaut à " + yeastEquivalentWeight.toFixed(1) + " g de levure " + yeastEquivalent + " par kg de farine.";
+      let caption: HTMLElement | null = document.getElementById("yeast-caption");
+      if(caption) {
+        caption.textContent = captionText;
+      }
+    }
+  }
+</script>
