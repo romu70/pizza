@@ -1,0 +1,116 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import InputNum from "../components/InputNum.astro";
+import Pizza from "../components/Pizza.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+console.log(lang);
+---
+
+<div id="header">
+  <Pizza />
+  <h1>{t('home.heading')}</h1>
+  <Pizza />
+</div>
+<p>{t('home.message')}</p>
+<form id="pizza">
+  <!-- <h2>Saisie des paramètres</h2> -->
+  <InputNum
+    label={t('form.dough-weight')}
+    id="weight"
+    min="250"
+    max="600"
+    step="10"
+  />
+  <InputNum
+    label={t('form.number')}
+    id="quantity"
+    min="1"
+    max="20"
+    step="1"
+  />
+  <InputNum label={t('form.water')} id="water" min="50" max="80" step="0.5" />
+  <InputNum
+    label={t('form.oil')}
+    id="oil"
+    min="0"
+    max="5"
+    step="0.5"
+  />
+  <InputNum
+    label={t('form.salt')}
+    id="salt"
+    min="0"
+    max="5"
+    step="0.5"
+    type="range"
+  />
+  <fieldset id="yeast-type" data-id="yeast-type">
+    <label>{t('form.yeast-type')}</label>
+    <div class="radio">
+      <input
+        type="radio"
+        id="yeast-fresh"
+        name="yeast-type"
+        value="fresh"
+        checked
+      />
+      <label for="yeast-fresh">{t('form.yeast-type.fresh')}</label>
+    </div>
+    <div class="radio">
+      <input type="radio" id="yeast-dry" name="yeast-type" value="dry" />
+      <label for="yeast-dry">{t('form.yeast-type.dry')}</label>
+    </div>
+  </fieldset>
+  <InputNum
+    label={t('form.yeast-rate')}
+    id="yeast"
+    min="0"
+    max="5"
+    step="0.1"
+  />
+  <span id="yeast-caption">
+    équivalence levure
+  </span>
+  <button id="compute" type="submit" value="computer">{t('form.button.text')}</button>
+</form>
+
+<style>
+fieldset {
+  border: none;
+  width: 100%;
+}
+
+fieldset > label {
+  color: var(--main-color);
+  font-weight: 500;
+}
+
+.radio {
+  padding: 0.25rem 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.radio label {
+  color: black;
+}
+
+input[type="radio"] {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#yeast-caption {
+  /* visibility: hidden; */
+  margin-top: -0.5rem;
+}
+
+#compute {
+  background-color: #F5E90C;
+  color: black;
+}
+</style>
