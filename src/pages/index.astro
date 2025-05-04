@@ -1,21 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import InputNum from "../components/InputNum.astro";
+import DoughForm from "../components/DoughForm.astro";
 import Modale from "../components/Modale.astro";
 import Pizza from "../components/Pizza.astro";
 import Overlay from "../components/Overlay.astro";
 ---
 
-<Layout title="Pizza">
+<Layout title="Coach Pizza">
   <main>
     <div id="header">
       <Pizza />
       <h1>Pizza</h1>
       <Pizza />
     </div>
-    <p>La pizza est une science, on ne rigole pas avec la science.</p>
-    <form id="pizza">
-      <!-- <h2>Saisie des paramètres</h2> -->
+    <!-- <p>La pizza est une science, on ne rigole pas avec la science.</p> -->
+    <!-- <form id="pizza">
       <InputNum
         label="Poids des pâtons en g"
         id="weight"
@@ -74,8 +73,8 @@ import Overlay from "../components/Overlay.astro";
         équivalence levure
       </span>
       <button id="compute" type="submit" value="Calculer">Calculer</button>
-    </form>
-
+    <!-- </form> -->
+    <DoughForm />
     <Modale />
     <Overlay />
   </main>
