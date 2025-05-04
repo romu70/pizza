@@ -16,7 +16,7 @@
 
 body {
   line-height: var(--line-height);
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 
 form {
@@ -82,7 +82,8 @@ input[type="number"] {
 }
 
 p,
-#yeast-caption, #final-yeast-caption {
+#yeast-caption,
+#final-yeast-caption {
   color: #777;
   text-align: center;
   font-style: italic;
@@ -160,4 +161,75 @@ p,
   form {
     width: 25%;
   }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: calc(100% - 2rem);
+  color: white;
+  font-size: 20px;
+  line-height: 1.6;
+  padding-bottom: 2rem;
+  align-items: center;
+  gap: 2rem;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  color: var(--italian-green);
+  text-shadow: 8px 8px 16px var(--italian-green);
+}
+
+h2 {
+  text-align: center;
+  color: #999;
+}
+
+fieldset {
+  border: none;
+  width: 100%;
+}
+
+fieldset > label {
+  color: var(--main-color);
+  font-weight: 500;
+}
+
+.radio {
+  padding: 0.25rem 0;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.radio label {
+  color: black;
+}
+
+input[type="radio"] {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#yeast-caption {
+  /* visibility: hidden; */
+  margin-top: -0.5rem;
+}
+
+#compute {
+  background-color: #f5e90c;
+  color: black;
 }
