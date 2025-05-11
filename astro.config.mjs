@@ -1,6 +1,6 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: 'https://romu70.github.io',
-  base: '/pizza',
-})
+  site: "https://romu70.github.io",
+  // base: '/pizza',
+});
