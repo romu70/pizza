@@ -1,0 +1,77 @@
+---
+import Home from "../assets/images.svg";
+---
+
+<div id="menu">
+  <a href='/'>
+    <Home/>
+  </a>
+  <a href='/about'>About</a>
+</div>
+
+<script>
+</script>
+
+<style>
+  #menu {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: end;
+    gap: 0.5rem;
+    visibility: collapse;
+    width: 16rem;
+  }
+
+  #menu a {
+    color:var(--main-color);
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight:200;
+    padding: 1rem;
+  }
+
+  #menu a:hover,
+  #menu a:focus {
+    background-color: var(--main-color);
+    color: var(--active-background-color);
+  }
+
+  #menu.expanded {
+    margin-top: 0.5rem;
+    visibility: visible;
+    flex-direction: column;
+    align-items:flex-start;
+    background-color: var(--active-background-color);
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    #menu {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      align-content: end;
+      width: 80%;
+      visibility: visible;
+      margin: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    #menu {
+      width: 70%;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    #menu {
+      width: 60%;
+    }
+  }
+</style>
