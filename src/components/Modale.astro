@@ -30,6 +30,10 @@ const t = useTranslations(lang);
 </dialog>
 
 <script>
+  import { useTranslations } from '../i18n/utils';
+  import { languages, ui } from '../i18n/ui';
+  const t = useTranslations(document.documentElement.lang as keyof typeof languages);
+
   document.addEventListener("DOMContentLoaded", function () {
     let form = document.getElementById("pizza");
     form?.addEventListener("submit", onCompute);
@@ -70,6 +74,7 @@ const t = useTranslations(lang);
     let yeastType;
     if(yeastTypeInput) {
       yeastType = yeastTypeInput.value;
+      console.log(yeastType);
     }
     let yeastRate = Number(getInputValue("yeast"));
 
@@ -99,15 +104,19 @@ const t = useTranslations(lang);
     let yeastCaption = document.getElementById("final-yeast-caption");
     let yeastEquivalent: string;
     let yeastWeight: number = 0;
+    let yeastEqtype: string;
     if(yeastCaption) {
-      if(yeastType === "Fraîche") {
+      if(yeastType === t('form.yeast-type.fresh').toLowerCase()) {
         yeastWeight = yeast / 2.5;
-        yeastEquivalent = "Equivaut à " + yeastWeight.toFixed(1) + " g de levure sèche, soit " + (yeastWeight * 1000 / flour).toFixed(1) + " g/kg de farine.";
-      } else { // Sèche
+        // yeastEquivalent = "Equivaut à " + yeastWeight.toFixed(1) + " g de levure sèche, soit " + (yeastWeight * 1000 / flour).toFixed(1) + " g/kg de farine.";
+        yeastEqtype = t('form.yeast-type.dry').toLowerCase();
+      } else { // dry
         yeastWeight = yeast * 2.5;
-        yeastEquivalent = "Equivaut à " + yeastWeight.toFixed(1) + " g de levure fraîche, soit " + (yeastWeight * 1000 / flour).toFixed(1) + " g/kg de farine.";
+        // yeastEquivalent = "Equivaut à " + yeastWeight.toFixed(1) + " g de levure fraîche, soit " + (yeastWeight * 1000 / flour).toFixed(1) + " g/kg de farine.";
+        yeastEqtype = t('form.yeast-type.fresh').toLowerCase();
       }
 
+      yeastEquivalent = t('modale.yeast.eq').replace("${yeast.eq.value}", yeastWeight.toFixed(1)).replace("${yeast.eq.type}", yeastEqtype).replace("${yeast.eq.rate}", (yeastWeight * 1000 / flour).toFixed(1));
       yeastCaption.textContent = yeastEquivalent;
     }
   }

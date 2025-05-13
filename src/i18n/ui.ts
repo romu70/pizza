@@ -24,7 +24,7 @@ export const ui = {
       "Equivalent to ${yeast.eq.value} g of ${yeast.eq.type} yeast per kg of flour.",
     "form.total-hydration": "Total hydration (%)",
     "form.button.text": "Compute",
-    "modale.title": "For your pizzas",
+    "modale.title": "Your pizzas",
     "modale.helper": "Weights are expressed in g.",
     "modale.flour": "Flour",
     "modale.water": "Water",
@@ -32,9 +32,11 @@ export const ui = {
     "modale.salt": "Salt",
     "modale.total": "Total weight",
     "modale.yeast": "yeast",
-    "modale.yeast.eq": "",
+    "modale.yeast.eq":
+      "Equivalent to ${yeast.eq.value} g of ${yeast.eq.type} yeast → ${yeast.eq.rate} g/kg of flour.",
     "modale.button.text": "Close",
   },
+
   "en-US": {
     "home.heading": "Coach Pizza for the Yankees",
     "home.message": "Pizza is a science, don't cheat with science.",
@@ -52,7 +54,7 @@ export const ui = {
       "Equivalent to ${yeast.eq.value} oz of ${yeast.eq.type} yeast per lb of flour.",
     "form.total-hydration": "Total hydration (%)",
     "form.button.text": "Compute",
-    "modale.title": "For your pizzas",
+    "modale.title": "Your pizzas",
     "modale.helper": "Weights are expressed in oz.",
     "modale.flour": "Flour",
     "modale.water": "Water",
@@ -60,7 +62,8 @@ export const ui = {
     "modale.salt": "Salt",
     "modale.total": "Total weight",
     "modale.yeast": "yeast",
-    "modale.yeast.eq": "",
+    "modale.yeast.eq":
+      "Equivalent to ${yeast.eq.value} oz of ${yeast.eq.type} yeast → ${yeast.eq.rate} oz/lb of flour.",
     "modale.button.text": "Close",
   },
   "fr-FR": {
@@ -81,7 +84,7 @@ export const ui = {
       "Equivalent à ${yeast.eq.value} g de levure ${yeast.eq.type} par kg de farine.",
     "form.total-hydration": "Hydratation totale (%)",
     "form.button.text": "Calculer",
-    "modale.title": "Pour vos pizzas",
+    "modale.title": "Vos pizzas",
     "modale.helper": "Les poids sont indiqués en g.",
     "modale.flour": "Farine",
     "modale.water": "Eau",
@@ -89,7 +92,8 @@ export const ui = {
     "modale.salt": "Sel",
     "modale.total": "Poids total",
     "modale.yeast": "Levure",
-    "modale.yeast.eq": "",
+    "modale.yeast.eq":
+      "Equivalent à ${yeast.eq.value} g de levure ${yeast.eq.type} → ${yeast.eq.rate} g/kg de farine.",
     "modale.button.text": "Fermer",
   },
 } as const;
