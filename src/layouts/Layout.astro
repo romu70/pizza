@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl } from '../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import LanguagePicker from '../components/LanguagePicker.astro';
 import "../styles/styles.css";
 
@@ -9,14 +9,15 @@ import Pizza from "../components/Pizza.astro";
 import Overlay from "../components/Overlay.astro";
 
 const favi = "/favicon.svg";
+const title = "Coach Pizza";
 
 const lang = getLangFromUrl(Astro.url);
-// console.log("layout.lang: ", lang);
-const title = "Coach Pizza";
+console.log(lang);
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang={title}>
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Calculateur de pâte à pizza" />
@@ -32,7 +33,7 @@ const title = "Coach Pizza";
     <main>
       <DoughForm />
       <Modale />
-      <Overlay />
+      <!-- <Overlay /> -->
     </main>
 
 		<slot />
@@ -40,6 +41,10 @@ const title = "Coach Pizza";
 </html>
 
 <script>
+  import { useTranslations } from '../i18n/utils';
+  import { languages, ui } from '../i18n/ui';
+  const t = useTranslations(document.documentElement.lang as keyof typeof languages);
+
   type Div = HTMLElement | null | undefined;
   let overlay: Div;
 
@@ -104,17 +109,17 @@ const title = "Coach Pizza";
       let yeastEquivalent: string = "";
       let yeastEquivalentWeight: number = 0;
       if(selectedYeast[0].id === "yeast-fresh") {
-        yeastEquivalent = "sèche";
+        yeastEquivalent = t('form.yeast-type.dry').toLowerCase();
         yeastEquivalentWeight = yeast / 2.5;
       } else if (selectedYeast[0].id === "yeast-dry") {
-        yeastEquivalent = "fraîche";
+        yeastEquivalent = t('form.yeast-type.fresh').toLowerCase();
         yeastEquivalentWeight = yeast * 2.5;
       }
       else {
         alert("erreur sur le type de levure");
       }
 
-      let captionText: string = "Equivaut à " + yeastEquivalentWeight.toFixed(1) + " g de levure " + yeastEquivalent + " par kg de farine.";
+      let captionText: string = t('form.yeast.eq').replace("${yeast.eq.value}", yeastEquivalentWeight.toFixed(1)).replace("${yeast.eq.type}", yeastEquivalent);
       let caption: HTMLElement | null = document.getElementById("yeast-caption");
       if(caption) {
         caption.textContent = captionText;

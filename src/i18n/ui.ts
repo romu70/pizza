@@ -20,8 +20,8 @@ export const ui = {
     "form.yeast-type.fresh": "Fresh",
     "form.yeast-type.dry": "Dry",
     "form.yeast-rate": "Yeast rate (g/kg of flour)",
-    "form.yeast.eq.fresh": "One dough weight",
-    "form.yeast.eq.dry": "One dough weight",
+    "form.yeast.eq":
+      "Equivalent to ${yeast.eq.value} g of ${yeast.eq.type} yeast per kg of flour.",
     "form.total-hydration": "Total hydration (%)",
     "form.button.text": "Compute",
     "modale.title": "For your pizzas",
@@ -48,8 +48,8 @@ export const ui = {
     "form.yeast-type.fresh": "Fresh",
     "form.yeast-type.dry": "Dry",
     "form.yeast-rate": "Yeast rate (oz/lb of flour)",
-    "form.yeast.eq.fresh": "One dough weight",
-    "form.yeast.eq.dry": "One dough weight",
+    "form.yeast.eq":
+      "Equivalent to ${yeast.eq.value} oz of ${yeast.eq.type} yeast per lb of flour.",
     "form.total-hydration": "Total hydration (%)",
     "form.button.text": "Compute",
     "modale.title": "For your pizzas",
@@ -77,8 +77,8 @@ export const ui = {
     "form.yeast-type.fresh": "Fraîche",
     "form.yeast-type.dry": "Sèche",
     "form.yeast-rate": "Taux de levure (g/kg de farine)",
-    "form.yeast.eq.fresh": "One dough weight",
-    "form.yeast.eq.dry": "One dough weight",
+    "form.yeast.eq":
+      "Equivalent à ${yeast.eq.value} g de levure ${yeast.eq.type} par kg de farine.",
     "form.total-hydration": "Hydratation totale (%)",
     "form.button.text": "Calculer",
     "modale.title": "Pour vos pizzas",
