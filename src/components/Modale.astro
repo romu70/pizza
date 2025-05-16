@@ -32,7 +32,9 @@ const t = useTranslations(lang);
 <script>
   import { useTranslations } from '../i18n/utils';
   import { languages, ui } from '../i18n/ui';
-  const t = useTranslations(document.documentElement.lang as keyof typeof languages);
+  const lang = document.documentElement.lang;
+  // console.log("modale.lang: ", lang);
+  const t = useTranslations(lang as keyof typeof languages);
 
   document.addEventListener("DOMContentLoaded", function () {
     let form = document.getElementById("pizza");
@@ -71,32 +73,61 @@ const t = useTranslations(lang);
     let saltRate = Number(getInputValue("salt")) / 100;
 
     let yeastTypeInput: HTMLInputElement | null = document.querySelector('input[name="yeast-type"]:checked');
-    let yeastType;
+    let yeastType = "";
     if(yeastTypeInput) {
-      yeastType = yeastTypeInput.value;
-      console.log(yeastType);
+      yeastType = yeastTypeInput.value === "fresh" ? t('form.yeast-type.fresh') : t('form.yeast-type.dry');
+      // console.log(yeastType);
     }
     let yeastRate = Number(getInputValue("yeast"));
+    // console.log("yeastRate: ", yeastRate);
 
     let weight = unitWeight * quantity;
     let rate = 1 + waterRate + oilRate + saltRate;
-    let flour = Math.round(weight / rate);
-    let water = Math.round(flour * waterRate);
-    let oil = Math.round(flour * oilRate);
-    let salt = Math.round(flour * saltRate);
-    let yeast = (yeastRate * flour) / 1000;
+    let flour = weight / rate;
+    let water = flour * waterRate
+    let oil = flour * oilRate;
+    let salt = flour * saltRate;
+    let yeast;
+    let factor: number = 0;
+    if(lang !== "en-US") {
+      flour = Math.round(flour);
+      water = Math.round(water);
+      oil = Math.round(oil);
+      salt = Math.round(salt);
+      factor = 1000;
+    } else {
+      factor = 16;
+    }
+    yeast = (yeastRate * flour) / factor;
+    // console.log("yeast: ", yeast);
 
-    setValue("flour", flour.toString());
-    setValue("water", water.toString());
-    setValue("oil", oil.toString());
-    setValue("salt", salt.toString());
-    setValue("weight", weight.toString());
+    if(lang !== "en-US") {
+      setValue("flour", flour.toString());
+      setValue("water", water.toString());
+      setValue("oil", oil.toString());
+      setValue("salt", salt.toString());
+      setValue("weight", weight.toString());
+    } else {
+      setValue("flour", flour.toFixed(1));
+      setValue("water", water.toFixed(1));
+      setValue("oil", oil.toFixed(1));
+      setValue("salt", salt.toFixed(1));
+      setValue("weight", weight.toFixed(1));
+    }
+
     setValue("yeast", yeast.toFixed(1));
 
     // Set the yeast label to specify the type
     let yeastField = document.querySelector("#yeast .left span");
     if(yeastField && yeastField.textContent) {
-      yeastField.textContent = "Levure " + yeastType;
+      let message: string = "";
+      if(lang !== "fr-FR") {
+        message = t('modale.yeast').replace("${yeast.eq.type}", yeastType[0].toUpperCase() + yeastType.slice(1));
+      } else {
+        message = t('modale.yeast').replace("${yeast.eq.type}", yeastType[0].toLowerCase() + yeastType.slice(1));
+      }
+
+      yeastField.textContent = message;
     }
 
     removeBorder("yeast");
@@ -105,18 +136,18 @@ const t = useTranslations(lang);
     let yeastEquivalent: string;
     let yeastWeight: number = 0;
     let yeastEqtype: string;
+    console.log(yeast);
     if(yeastCaption) {
-      if(yeastType === t('form.yeast-type.fresh').toLowerCase()) {
+      if(yeastType === t('form.yeast-type.fresh')) {
         yeastWeight = yeast / 2.5;
-        // yeastEquivalent = "Equivaut à " + yeastWeight.toFixed(1) + " g de levure sèche, soit " + (yeastWeight * 1000 / flour).toFixed(1) + " g/kg de farine.";
         yeastEqtype = t('form.yeast-type.dry').toLowerCase();
       } else { // dry
         yeastWeight = yeast * 2.5;
-        // yeastEquivalent = "Equivaut à " + yeastWeight.toFixed(1) + " g de levure fraîche, soit " + (yeastWeight * 1000 / flour).toFixed(1) + " g/kg de farine.";
         yeastEqtype = t('form.yeast-type.fresh').toLowerCase();
       }
+      console.log(flour);
 
-      yeastEquivalent = t('modale.yeast.eq').replace("${yeast.eq.value}", yeastWeight.toFixed(1)).replace("${yeast.eq.type}", yeastEqtype).replace("${yeast.eq.rate}", (yeastWeight * 1000 / flour).toFixed(1));
+      yeastEquivalent = t('modale.yeast.eq').replace("${yeast.eq.value}", yeastWeight.toFixed(1)).replace("${yeast.eq.type}", yeastEqtype).replace("${yeast.eq.rate}", (yeastWeight * factor / flour).toFixed(1));
       yeastCaption.textContent = yeastEquivalent;
     }
   }
