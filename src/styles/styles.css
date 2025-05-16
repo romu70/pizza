@@ -77,22 +77,23 @@ input[type="number"] {
   width: 100%;
 }
 
-#compute {
+#compute,
+dialog button {
   margin-top: 1rem;
-  background-color: blue;
-  color: white;
+  background-color: #f5e90c;
+  color: black;
   border-radius: 0.5rem;
   width: 100%;
   border: none;
 }
 
-#compute:hover {
-  background-color: #0000a5;
+#compute:hover,
+dialog button:hover {
+  filter: brightness(0.8); /* Increase luminance */
 }
 
 p,
-#yeast-caption,
-#final-yeast-caption {
+#yeast-caption {
   color: #777;
   text-align: center;
   font-style: italic;
@@ -199,9 +200,4 @@ input[type="radio"] {
 #yeast-caption {
   /* visibility: hidden; */
   margin-top: -0.5rem;
-}
-
-#compute {
-  background-color: #f5e90c;
-  color: black;
 }
