@@ -18,14 +18,14 @@ const t = useTranslations(lang);
 
 <dialog>
   <h2>{t('modale.title')}</h2>
-  <p>{t('modale.helper')}</p>
+  <p class="right-aligned">{t('modale.helper')}</p>
   <Ingredient id="flour" type={t('modale.flour')} value="" symbol={flourSvg} />
   <Ingredient id="water" type={t('modale.water')} value="" symbol={waterSvg}/>
   <Ingredient id="oil" type={t('modale.oil')} value="" symbol={oliveSvg}/>
   <Ingredient id="salt" type={t('modale.salt')} value="" symbol={saltSvg}/>
   <Ingredient id="weight" type={t('modale.total')} value="" symbol={weightSvg}/>
   <Ingredient id="yeast" type={t('modale.yeast')} value="" symbol={yeastSvg}/>
-  <span id="final-yeast-caption">test</span>
+  <p id="final-yeast-caption" class="right-aligned">test</p>
   <button>{t('modale.button.text')}</button>
 </dialog>
 
@@ -167,6 +167,11 @@ const t = useTranslations(lang);
 </script>
 
 <style>
+  .right-aligned {
+    width: 100%;
+    text-align: right;
+  }
+
   dialog {
     padding: 2rem;
     border-radius: 1rem;
@@ -181,26 +186,6 @@ const t = useTranslations(lang);
     left: 50%;
     transform: translate(-50%, -50%);
     width: 30rem;
-  }
-
-  p, #final-yeast-caption{
-    width: 100%;
-    text-align: left;
-  }
-
-  dialog button {
-    margin-top: 1rem;
-    background-color: white;
-    color: blue;
-    border-radius: 0.5rem;
-    width: 100%;
-    border: 2px solid blue;
-  }
-
-  dialog button:hover {
-    color: #0000a5;
-    border-color: #0000a5;
-    background-color: azure;
   }
 
   #final-yeast-caption {
