@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://coach.pizza",
+  site: "https://romu70.github.io",
 });
