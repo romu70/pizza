@@ -1,77 +1,33 @@
 ---
-import Home from "../assets/images.svg";
+import { languages } from '../i18n/ui';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 ---
-
-<div id="menu">
-  <a href='/'>
-    <Home/>
-  </a>
-  <a href='/about'>About</a>
-</div>
-
-<script>
-</script>
+<ul>
+  {Object.entries(languages).map(([lang, label]) => (
+    <li>
+      <a href={`/${lang}/`}>{label}</a>
+    </li>
+  ))}
+  <a id="mi-about" href={`/${lang}/about`}>{t('nav.about')}</a>
+</ul>
 
 <style>
-  #menu {
+  ul {
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: end;
-    gap: 0.5rem;
-    visibility: collapse;
-    width: 16rem;
+    height: 2rem;
+    width: 100%;
+    justify-content: center;
+    list-style-type: none;
+    gap: 2rem;
   }
 
-  #menu a {
-    color:var(--main-color);
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight:200;
-    padding: 1rem;
-  }
-
-  #menu a:hover,
-  #menu a:focus {
-    background-color: var(--main-color);
-    color: var(--active-background-color);
-  }
-
-  #menu.expanded {
-    margin-top: 0.5rem;
-    visibility: visible;
-    flex-direction: column;
-    align-items:flex-start;
-    background-color: var(--active-background-color);
-  }
-
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  @media (min-width: 768px) {
-    #menu {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      align-content: end;
-      width: 80%;
-      visibility: visible;
-      margin: auto;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    #menu {
-      width: 70%;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    #menu {
-      width: 60%;
-    }
+  #mi-about::before {
+    content: "|";
+    float: left;
+    margin-right: 2rem;
   }
 </style>
