@@ -1,0 +1,45 @@
+/* This file contains the global styling of coach pizza */
+/* All specific styles are declared in their dedicated files */
+
+:root {
+  --line-height: 1.25rem;
+  --italian-green: #40914d;
+  --italian-red: #be393b;
+  --main-color: #777;
+  background-color: white;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  background: #13151a;
+  background-size: 224px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* disable double tap zoom */
+  touch-action: manipulation;
+}
+
+body {
+  line-height: var(--line-height);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+button {
+  margin-top: 1rem;
+  background-color: #f5e90c;
+  color: black;
+  border-radius: 0.5rem;
+  width: 100%;
+  border: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 0.8rem;
+}

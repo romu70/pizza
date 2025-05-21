@@ -1,0 +1,28 @@
+---
+import Pizza from "../components/Pizza.astro";
+const { title } = Astro.props;
+---
+<div id="header">
+  <Pizza />
+  <h1>{title}</h1>
+  <Pizza />
+</div>
+
+<style>
+  #header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    color: var(--italian-green);
+    text-shadow: 8px 8px 16px var(--italian-green);
+  }
+</style>
