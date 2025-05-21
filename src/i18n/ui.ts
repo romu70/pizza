@@ -8,8 +8,10 @@ export const defaultLang = "fr-FR";
 
 export const ui = {
   "en-GB": {
+    "header.content": "Simple pizza dough calculator",
     "home.heading": "Coach Pizza for the British",
-    "home.message": "Pizza is a science, don't cheat with science.",
+    "home.message":
+      "An easy pizza dough calculator, to never miss your pizzas.",
     "nav.about": "About",
     "form.dough-weight": "One dough weight (g)",
     "form.number": "Pizza(s) number",
@@ -35,11 +37,14 @@ export const ui = {
     "modale.yeast.eq":
       "Equivalent to ${yeast.eq.value} g of ${yeast.eq.type} yeast → ${yeast.eq.rate} g/kg of flour.",
     "modale.button.text": "Close",
+    "about.title": "About Coach Pizza",
   },
 
   "en-US": {
+    "header.content": "Simple pizza dough calculator",
     "home.heading": "Coach Pizza for the Yankees",
-    "home.message": "Pizza is a science, don't cheat with science.",
+    "home.message":
+      "An easy pizza dough calculator, to never miss your pizzas.",
     "nav.about": "About",
     "form.dough-weight": "One dough weight (oz)",
     "form.number": "Pizza(s) number",
@@ -65,11 +70,13 @@ export const ui = {
     "modale.yeast.eq":
       "Equivalent to ${yeast.eq.value} oz of ${yeast.eq.type} yeast → ${yeast.eq.rate} oz/lb of flour.",
     "modale.button.text": "Close",
+    "about.title": "About Coach Pizza",
   },
   "fr-FR": {
+    "header.content": "Calculateur de pâte à pizza simple et facile",
     "home.heading": "Coach Pizza pour les Français",
     "home.message":
-      "La pizza est une science, on ne rigole pas avec la science.",
+      "Calculateur de pâte à pizza facile à utiliser, pour ne plus râter vos pizzas.",
     "nav.about": "À propos",
     "form.dough-weight": "Poids des pâtons (g)",
     "form.number": "Nombre de pizza(s)",
@@ -95,5 +102,6 @@ export const ui = {
     "modale.yeast.eq":
       "Equivalent à ${yeast.eq.value} g de levure ${yeast.eq.type} → ${yeast.eq.rate} g/kg de farine.",
     "modale.button.text": "Fermer",
+    "about.title": "A propos de Coach Pizza",
   },
 } as const;
