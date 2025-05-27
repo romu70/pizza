@@ -7,12 +7,14 @@
   --italian-red: #be393b;
   --main-color: #777;
   background-color: white;
+  --button-background-color: #f5e90c;
+  --button-color: black;
 }
 
 html {
   font-family: system-ui, sans-serif;
-  background: #13151a;
-  background-size: 224px;
+  background: var(background-color);
+  font-size: 16px;
 }
 
 * {
@@ -25,16 +27,21 @@ html {
 
 body {
   line-height: var(--line-height);
-  padding-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 2rem;
+}
+
+#main {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
 }
 
 button {
   margin-top: 1rem;
-  background-color: #f5e90c;
-  color: black;
+  background-color: var(--button-background-color);
+  color: var(--button-color);
   border-radius: 0.5rem;
   width: 100%;
   border: none;
@@ -42,4 +49,18 @@ button {
   font-size: 1.2rem;
   text-align: center;
   padding: 0.8rem;
+}
+
+/* Ajuster la taille de base pour les écrans plus petits */
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Ajuster la taille de base pour les écrans plus grands */
+@media (min-width: 1200px) {
+  html {
+    font-size: 18px;
+  }
 }
