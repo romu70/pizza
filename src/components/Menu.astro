@@ -7,7 +7,7 @@ const t = useTranslations(lang);
 
 ---
 <div id="menu">
-  <div class="language-dropdown">
+  <div class="dropdown language-dropdown">
     <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
       <span class="current-language">{languages[lang]}</span>
       <span class="dropdown-arrow">▼</span>
@@ -22,7 +22,7 @@ const t = useTranslations(lang);
       ))}
     </ul>
   </div>
-  <div class="nav-dropdown">
+  <div class="dropdown nav-dropdown">
     <button class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
       <span class="nav-label">{t('nav.menu')}</span>
       <span class="dropdown-arrow">▼</span>
@@ -120,6 +120,10 @@ const t = useTranslations(lang);
     background-color: white;
   }
 
+  .dropdown  {
+    min-width: 30%;
+  }
+
   @media (min-width: 768px) {
     #menu {
       display: flex;
@@ -164,6 +168,7 @@ const t = useTranslations(lang);
     font-size: inherit;
     color: inherit;
     transition: background-color 0.2s ease;
+    justify-content: center;
   }
 
   .dropdown-toggle:hover,
