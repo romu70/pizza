@@ -15,14 +15,23 @@ const { title } = Astro.props;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    padding: 0 1rem;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
     line-height: 1;
     text-align: center;
     color: var(--italian-green);
-    text-shadow: 8px 8px 16px var(--italian-green);
+    text-shadow: 4px 4px 24px var(--italian-green);
   }
+
+  @media (max-width: 768px) {
+  }
+
+  /* Ajuster la taille de base pour les écrans plus grands */
+  @media (min-width: 1200px) {
+  }
+
 </style>
