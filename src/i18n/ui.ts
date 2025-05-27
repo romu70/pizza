@@ -12,7 +12,9 @@ export const ui = {
     "home.heading": "Coach Pizza for the British",
     "home.message":
       "An easy pizza dough calculator, to never miss your pizzas.",
+    "nav.home": "Home",
     "nav.about": "About",
+    "nav.menu": "Menu",
     "form.dough-weight": "One dough weight (g)",
     "form.number": "Pizza(s) number",
     "form.water": "Water (%)",
@@ -45,7 +47,9 @@ export const ui = {
     "home.heading": "Coach Pizza for the Yankees",
     "home.message":
       "An easy pizza dough calculator, to never miss your pizzas.",
+    "nav.home": "Home",
     "nav.about": "About",
+    "nav.menu": "Menu",
     "form.dough-weight": "One dough weight (oz)",
     "form.number": "Pizza(s) number",
     "form.water": "Water (%)",
@@ -77,7 +81,9 @@ export const ui = {
     "home.heading": "Coach Pizza pour les Français",
     "home.message":
       "Calculateur de pâte à pizza facile à utiliser, pour ne plus râter vos pizzas.",
+    "nav.home": "Accueil",
     "nav.about": "À propos",
+    "nav.menu": "Menu",
     "form.dough-weight": "Poids des pâtons (g)",
     "form.number": "Nombre de pizza(s)",
     "form.water": "Eau (%)",
