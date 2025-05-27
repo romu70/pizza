@@ -2,6 +2,7 @@
 // import { Debug } from "astro:components";
 import { Image } from 'astro:assets';
 import Ingredient from "../components/Ingredient.astro";
+import Button from "../components/Button.astro";
 import flourSvg from '../images/flour.svg';
 import oliveSvg from '../images/olive.svg';
 import saltSvg from '../images/salt.svg';
@@ -26,7 +27,7 @@ const t = useTranslations(lang);
   <Ingredient id="weight" type={t('modale.total')} value="" symbol={weightSvg}/>
   <Ingredient id="yeast" type={t('modale.yeast')} value="" symbol={yeastSvg}/>
   <p id="final-yeast-caption" class="right-aligned">test</p>
-  <button>{t('modale.button.text')}</button>
+  <Button label={t('modale.button.text')}>
 </dialog>
 
 <script>
