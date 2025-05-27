@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import InputNum from "../components/InputNum.astro";
+import Button from "../components/Button.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -84,7 +85,7 @@ if(lang === "en-US") {
     <span id="yeast-caption">
       équivalence levure
     </span>
-    <button id="compute" type="submit" value="computer">{t('form.button.text')}</button>
+    <Button id="compute" type="submit" value="compute" label={t('form.button.text')} />
   </form>
 </div>
 
@@ -99,6 +100,7 @@ if(lang === "en-US") {
     flex-direction: column;
     gap: 1rem;
     align-items: center;
+    margin-top: 2rem;
   }
 
   form {
@@ -109,25 +111,6 @@ if(lang === "en-US") {
     align-items: center;
     width: 90%;
     max-width: 28rem;
-  }
-
-  #compute,
-  dialog button {
-    margin-top: 1rem;
-    background-color: #f5e90c;
-    color: black;
-    border-radius: 0.5rem;
-    width: 100%;
-    border: none;
-    font-weight: 600;
-    font-size: 1.2rem;
-    text-align: center;
-    padding: 0.8rem;
-  }
-
-  #compute:hover,
-  dialog button:hover {
-    filter: brightness(0.8); /* Increase luminance */
   }
 
   p,
@@ -174,23 +157,7 @@ if(lang === "en-US") {
     }
   }
 
-/* main {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  max-width: calc(100% - 2rem);
-  color: white;
-  font-size: 20px;
-  line-height: 1.6;
-  padding-bottom: 2rem;
-  align-items: center;
-  gap: 2rem;
-}
- */
 
-.form {
-  margin-top: 2rem;
-}
 
 h2 {
   text-align: center;
@@ -205,6 +172,7 @@ fieldset {
 fieldset > label {
   color: var(--main-color);
   font-weight: 500;
+  font-size: 1.2rem;
 }
 
 .radio {
