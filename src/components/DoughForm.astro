@@ -19,7 +19,7 @@ if(lang === "en-US") {
 }
 ---
 <div class="form">
-  <p id="message">{t('home.message')}</p>
+  <p id="message" class="caption">{t('home.message')}</p>
   <form id="pizza">
     <!-- <h2>Saisie des paramètres</h2> -->
     <InputNum
@@ -82,9 +82,9 @@ if(lang === "en-US") {
       max="5"
       step="0.1"
     />
-    <span id="yeast-caption">
+    <p id="yeast-caption" class="caption">
       équivalence levure
-    </span>
+    </p>
     <Button id="compute" type="submit" value="compute" label={t('form.button.text')} />
   </form>
 </div>
@@ -111,15 +111,6 @@ if(lang === "en-US") {
     align-items: center;
     width: 90%;
     max-width: 28rem;
-  }
-
-  p,
-  #yeast-caption {
-    color: #777;
-    text-align: center;
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1rem;
   }
 
   .type {
