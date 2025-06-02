@@ -12,4 +12,32 @@ const { id, type, value, symbol } = Astro.props;
 </div>
 
 <style>
+.ingredient {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.3rem;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.left img {
+  width: 3rem;
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.type {
+  margin-left: 0.5rem;
+  color: #777;
+}
+
+.value {
+  font-weight: bold;
+}
 </style>
