@@ -60,19 +60,21 @@ if(lang === "en-US") {
     />
     <fieldset id="yeast-type" data-id="yeast-type">
       <label>{t('form.yeast-type')}</label>
-      <div class="radio">
-        <input
-          type="radio"
-          id="yeast-fresh"
-          name="yeast-type"
-          value="fresh"
-          checked
-        />
-        <label for="yeast-fresh">{t('form.yeast-type.fresh')}</label>
-      </div>
-      <div class="radio">
-        <input type="radio" id="yeast-dry" name="yeast-type" value="dry" />
-        <label for="yeast-dry">{t('form.yeast-type.dry')}</label>
+      <div class="radio-btns">
+        <div class="radio">
+          <input
+            type="radio"
+            id="yeast-fresh"
+            name="yeast-type"
+            value="fresh"
+            checked
+          />
+          <label for="yeast-fresh">{t('form.yeast-type.fresh')}</label>
+        </div>
+        <div class="radio">
+          <input type="radio" id="yeast-dry" name="yeast-type" value="dry" />
+          <label for="yeast-dry">{t('form.yeast-type.dry')}</label>
+        </div>
       </div>
     </fieldset>
     <InputNum
@@ -158,23 +160,39 @@ h2 {
 fieldset {
   border: none;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
 }
 
 fieldset > label {
   color: var(--main-color);
   font-weight: 500;
   font-size: 1.2rem;
+  text-align: center;
+}
+
+.radio-btns {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4rem;
 }
 
 .radio {
   padding: 0.25rem 0;
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   align-items: center;
 }
 
 .radio label {
   color: black;
+  font-size: 1.1rem;
 }
 
 input[type="radio"] {
