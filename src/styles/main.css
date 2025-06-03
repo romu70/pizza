@@ -59,6 +59,20 @@ button {
   font-size: 1rem;
 }
 
+/* About page styling */
+section#about {
+  padding: 1rem;
+  font-size: 1.2rem;
+  line-height: 150%;
+  width: 90%;
+  max-width: 40rem;
+  margin: auto;
+}
+
+section#about p {
+  margin-bottom: 2rem;
+}
+
 /* Ajuster la taille de base pour les écrans plus petits */
 @media (max-width: 768px) {
   html {
@@ -67,7 +81,7 @@ button {
 }
 
 /* Ajuster la taille de base pour les écrans plus grands */
-@media (min-width: 1200px) {
+@media (min-width: 1440px) {
   html {
     font-size: 18px;
   }
