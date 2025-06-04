@@ -30,7 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 6rem;
 }
 
 #main {
@@ -86,4 +86,9 @@ section#about p {
   html {
     font-size: 18px;
   }
+}
+
+.floatingchat-container-mobi,
+.floatingchat-container {
+  width: 40rem !important;
 }
