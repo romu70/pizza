@@ -6,18 +6,34 @@ import DoughForm from "../components/DoughForm.astro";
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
+const kofiButtonText = t('ko-fi.button.text');
 ---
-
 <Layout heading={t('home.heading')}>
   <DoughForm />
   <Modale />
   <Overlay />
 </Layout>
 
+<!-- Load Ko-fi widget script -->
+<script is:inline src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+
+<!-- Initialize Ko-fi widget with the translation -->
+<script define:vars={{ kofiButtonText }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof kofiWidgetOverlay !== 'undefined') {
+      kofiWidgetOverlay.draw('coachpizza', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': kofiButtonText,
+        'floating-chat.donateButton.background-color': '#d9534f',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    }
+  });
+</script>
+
 <script>
   import { useTranslations } from '../i18n/utils';
-  import { languages, ui } from '../i18n/ui';
+  import { languages } from '../i18n/ui';
   const t = useTranslations(document.documentElement.lang as keyof typeof languages);
 
   type Div = HTMLElement | null | undefined;
