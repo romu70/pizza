@@ -40,6 +40,7 @@ export const ui = {
       "Equivalent to ${yeast.eq.value} g of ${yeast.eq.type} yeast → ${yeast.eq.rate} g/kg of flour.",
     "modale.button.text": "Close",
     "about.title": "About Coach Pizza",
+    "ko-fi.button.text": "Help Coach Pizza",
   },
 
   "en-US": {
@@ -75,6 +76,7 @@ export const ui = {
       "Equivalent to ${yeast.eq.value} oz of ${yeast.eq.type} yeast → ${yeast.eq.rate} oz/lb of flour.",
     "modale.button.text": "Close",
     "about.title": "About Coach Pizza",
+    "ko-fi.button.text": "Help Coach Pizza",
   },
   "fr-FR": {
     "header.content": "Calculateur de pâte à pizza simple et facile",
@@ -109,5 +111,6 @@ export const ui = {
       "Equivalent à ${yeast.eq.value} g de levure ${yeast.eq.type} → ${yeast.eq.rate} g/kg de farine.",
     "modale.button.text": "Fermer",
     "about.title": "A propos de Coach Pizza",
+    "ko-fi.button.text": "Aider Coach Pizza",
   },
 } as const;
