@@ -1,5 +1,7 @@
 import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://romu70.github.io",
+  site: "https://coach.pizza",
+  integrations: [sitemap()],
 });
