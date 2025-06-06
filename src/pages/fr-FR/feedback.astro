@@ -1,0 +1,11 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout  heading={t('feedback.title')}>
+  <iframe src="https://tisserand.notion.site/ebd/207000ee8f6f8091b8d8ee02d3c5bfb5" width="100%" height="600" frameborder="0" allowfullscreen />
+</Layout>

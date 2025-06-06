@@ -13,6 +13,7 @@ export const ui = {
     "home.message":
       "An easy pizza dough calculator, to never miss your pizzas.",
     "nav.home": "Home",
+    "nav.feedback": "Improve the recipe",
     "nav.about": "About",
     "nav.menu": "Menu",
     "form.dough-weight": "One dough weight (g)",
@@ -41,6 +42,7 @@ export const ui = {
     "modale.button.text": "Close",
     "about.title": "About Coach Pizza",
     "ko-fi.button.text": "Help Coach Pizza",
+    "feedback.title": "Improve the recipe!",
   },
 
   "en-US": {
@@ -49,6 +51,7 @@ export const ui = {
     "home.message":
       "An easy pizza dough calculator, to never miss your pizzas.",
     "nav.home": "Home",
+    "nav.feedback": "Improve the recipe",
     "nav.about": "About",
     "nav.menu": "Menu",
     "form.dough-weight": "One dough weight (oz)",
@@ -77,6 +80,7 @@ export const ui = {
     "modale.button.text": "Close",
     "about.title": "About Coach Pizza",
     "ko-fi.button.text": "Help Coach Pizza",
+    "feedback.title": "Improve the recipe!",
   },
   "fr-FR": {
     "header.content": "Calculateur de pâte à pizza simple et facile",
@@ -84,6 +88,7 @@ export const ui = {
     "home.message":
       "Calculateur de pâte à pizza facile à utiliser, pour ne plus râter vos pizzas.",
     "nav.home": "Accueil",
+    "nav.feedback": "Améliore la recette",
     "nav.about": "À propos",
     "nav.menu": "Menu",
     "form.dough-weight": "Poids des pâtons (g)",
@@ -112,5 +117,6 @@ export const ui = {
     "modale.button.text": "Fermer",
     "about.title": "A propos de Coach Pizza",
     "ko-fi.button.text": "Aider Coach Pizza",
+    "feedback.title": "Améliore la recette !",
   },
 } as const;
