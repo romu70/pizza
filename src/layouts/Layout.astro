@@ -9,6 +9,7 @@ const title = "Coach Pizza";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const kofiButtonText = t('ko-fi.button.text');
 
 const { heading } = Astro.props;
 ---
@@ -31,6 +32,23 @@ const { heading } = Astro.props;
 		</div>
 	</body>
 </html>
+
+<!-- Load Ko-fi widget script -->
+<script is:inline src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
+
+<!-- Initialize Ko-fi widget with the translation -->
+<script define:vars={{ kofiButtonText }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof kofiWidgetOverlay !== 'undefined') {
+      kofiWidgetOverlay.draw('coachpizza', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': kofiButtonText,
+        'floating-chat.donateButton.background-color': '#d9534f',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    }
+  });
+</script>
 
 <style>
 </style>
