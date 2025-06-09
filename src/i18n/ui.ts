@@ -8,7 +8,8 @@ export const defaultLang = "fr-FR";
 
 export const ui = {
   "en-GB": {
-    "header.content": "Simple pizza dough calculator",
+    "header.content":
+      "Never mess up your pizza dough again! Calculate ideal ingredient quantities. Free, no ads, fast and easy.",
     "home.heading": "Coach Pizza for the British",
     "home.message":
       "An easy pizza dough calculator, to never miss your pizzas.",
@@ -46,7 +47,8 @@ export const ui = {
   },
 
   "en-US": {
-    "header.content": "Simple pizza dough calculator",
+    "header.content":
+      "Never mess up your pizza dough again! Calculate ideal ingredient quantities. Free, no ads, fast and easy.",
     "home.heading": "Coach Pizza for the Yankees",
     "home.message":
       "An easy pizza dough calculator, to never miss your pizzas.",
@@ -83,7 +85,8 @@ export const ui = {
     "feedback.title": "Improve the recipe!",
   },
   "fr-FR": {
-    "header.content": "Calculateur de pâte à pizza simple et facile",
+    "header.content":
+      "Ne ratez plus jamais votre pâte à pizza ! Calculez les quantités idéales d’ingrédients. Gratuit, sans pub, simple et rapide.",
     "home.heading": "Coach Pizza pour les Français",
     "home.message":
       "Calculateur de pâte à pizza facile à utiliser, pour ne plus râter vos pizzas.",
