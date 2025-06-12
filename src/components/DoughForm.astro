@@ -8,7 +8,7 @@ const t = useTranslations(lang);
 // console.log(lang);
 
 let DefaultDoughWeight: number = 250;
-let DefaultDoughWeightStep: number = 10;
+let DefaultDoughWeightStep: number = 5;
 let DefaultMaxDoughWeight: number = 600;
 const MetricToImperial: number = 0.03527396195;
 
@@ -41,21 +41,21 @@ if(lang === "en-US") {
       id="water"
       min="50"
       max="80"
-      step="0.5"
+      step="0.1"
     />
     <InputNum
       label={t('form.oil')}
       id="oil"
       min="0"
       max="5"
-      step="0.5"
+      step="0.1"
     />
     <InputNum
       label={t('form.salt')}
       id="salt"
       min="0"
       max="5"
-      step="0.5"
+      step="0.1"
       type="range"
     />
     <fieldset id="yeast-type" data-id="yeast-type">
